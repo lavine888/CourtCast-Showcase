@@ -475,7 +475,7 @@ $$('#timeline button').forEach(button => button.addEventListener('click', () => 
 $('#frameHelp').addEventListener('click', () => {
   takeControl(); $('#frameNote').hidden = !$('#frameNote').hidden;
   $('#frameHelp').setAttribute('aria-expanded', String(!$('#frameNote').hidden));
-  $('#frameNote').textContent = state.chapter < 2 ? '公开原型使用合成球场呈现交互流程，数值沿用团队路演样例。球员位置、框线与路线均为示意。' : '合成球场展示出手环境、防守牵引与空间变化的解读方式。45% 与决策对比数字来自团队路演样例，示意位置不等于真实识别结果。';
+  $('#frameNote').textContent = state.chapter < 2 ? '通过三个关键时刻回看这一回合。球员站位采用人工标注，框线与传球路线用于说明球场位置；决策估算在右侧分析中揭晓。' : '比赛关键帧与样例分析结果一同呈现。画面中的球员、数字和位置标注对应这一回合，结合右侧解读理解出手环境、防守牵引与空间变化。';
   fitReplay();
 });
 
@@ -534,6 +534,6 @@ addEventListener('keydown', event => {
 });
 document.addEventListener('visibilitychange', () => { document.body.classList.toggle('document-hidden', document.hidden); lastFrameTime = performance.now(); });
 
-
+$('#previewMenu').hidden = new URLSearchParams(location.search).get('preview') !== '1';
 syncSound(); updateNavigation();
 })();
