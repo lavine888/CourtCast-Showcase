@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="560" viewBox="0 0 1600 560" role="img" aria-labelledby="title desc">
-<title id="title">CourtCast · NBA × AWS 铜奖作品</title><desc id="desc">用你的眼睛，看懂每一球。暖金、深棕与象牙白的篮球产品作品封面。</desc>
+<title id="title">CourtCast · AI 篮球解说与决策分析</title><desc id="desc">用你的眼睛，看懂每一球。暖金、深棕与象牙白的篮球产品作品封面。</desc>
 <rect width="1600" height="560" rx="22" fill="#24140f"/>
 <path d="M0 507H1600M1110 0V560M0 506H920" stroke="#A99563" opacity=".23"/>
 <g fill="none" stroke="#A99563" opacity=".25"><circle cx="1320" cy="330" r="210"/><circle cx="1320" cy="330" r="126"/><path d="M1110 330H1530M1320 120V540M1110 170Q1320 330 1110 490M1530 170Q1320 330 1530 490"/></g>
@@ -9,8 +9,8 @@
 <text x="89" y="322" fill="#FCF5E2" font-size="37" font-weight="500">用你的眼睛，看懂每一球。</text>
 <text x="91" y="383" fill="#C9BA9A" font-size="19">从看见一次回放，到理解一次决策。</text>
 <text x="89" y="466" fill="#A99563" font-size="14" letter-spacing="3">FROM REPLAY TO REASONING</text>
-<rect x="1150" y="48" width="360" height="64" rx="32" fill="#A99563"/>
-<text x="1330" y="88" fill="#24140f" font-size="19" font-weight="600" text-anchor="middle" letter-spacing="2">BRONZE AWARD · TEAM 15</text>
-<text x="89" y="539" fill="#C9BA9A" font-size="13" letter-spacing="2">NBA × AWS · 深度赛场黑客松</text>
+<rect x="1150" y="48" width="360" height="64" rx="32" fill="none" stroke="#A99563" stroke-opacity=".6"/>
+<text x="1330" y="88" fill="#A99563" font-size="19" font-weight="600" text-anchor="middle" letter-spacing="2">PLAY INTELLIGENCE</text>
+<text x="89" y="539" fill="#C9BA9A" font-size="13" letter-spacing="2">VIDEO · DATA · DECISION</text>
 <text x="1510" y="539" fill="#A99563" font-size="13" text-anchor="end" letter-spacing="2">PRODUCT SHOWCASE</text>
 </g></svg>
