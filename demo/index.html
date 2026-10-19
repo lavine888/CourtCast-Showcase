@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#592F23">
+  <title>CourtCast — 从回放，到理解</title>
+  <link rel="icon" href="assets/logo_ball.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="experience.css">
+</head>
+<body data-view="home">
+  <svg class="icon-definitions" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+      <symbol id="i-back" viewBox="0 0 24 24"><path d="M20 12H5m6-6-6 6 6 6"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+      <symbol id="i-sound" viewBox="0 0 24 24"><path d="M10 5 5 9H2v6h3l5 4Zm4 4c2 1.5 2 4.5 0 6m3-9c4 3 4 9 0 12"/></symbol>
+      <symbol id="i-mute" viewBox="0 0 24 24"><path d="M10 5 5 9H2v6h3l5 4Zm5 4 6 6m0-6-6 6"/></symbol>
+      <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 0 1 6 0c0 2-3 2-3 4m0 3h.01"/></symbol>
+      <symbol id="i-replay" viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 1 8M4 4v6h6"/></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"/><path d="M12 2v5m0 10v5M2 12h5m10 0h5"/></symbol>
+    </defs>
+  </svg>
+
+  <div id="cinema" aria-hidden="true"><canvas id="eyeCanvas"></canvas><div class="cinema-shade"></div><div class="grain"></div></div>
+
+  <header class="masthead">
+    <button id="homeButton" class="brand" aria-label="CourtCast，回到首屏">
+      <img src="assets/logo_ball.svg" width="30" height="30" alt="">
+      <img class="wordmark" src="assets/logo_word.svg" width="125" height="24" alt="CourtCast">
+    </button>
+    <div class="header-actions">
+      <button id="soundButton" class="icon-button sound-button" aria-label="开启声音" aria-pressed="false" data-tooltip="开启声音">
+        <svg class="icon"><use href="#i-mute"/></svg><span class="audio-lines" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
+
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="hero" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <p class="eyebrow hero-eyebrow"><span></span>COURTCAST / PLAY INTELLIGENCE</p>
+        <h1 id="heroTitle">用你的眼睛，<br><span>看懂每一球。</span></h1>
+        <p class="hero-description">不止看见发生了什么。<br>从比赛画面出发，理解每一次选择。</p>
+        <button id="enterExplore" class="primary-button magnetic hero-explore">探索更多亮点<svg class="icon"><use href="#i-arrow"/></svg></button>
+        <p id="heroStatus" class="hero-status" role="status"></p>
+      </div>
+      <p class="hero-page"><i></i>FROM REPLAY TO REASONING</p>
+    </section>
+
+    <section id="workspace" class="workspace" aria-label="回合分析" hidden inert>
+      <div class="workspace-grid">
+        <section class="replay-column" aria-labelledby="playTitle">
+          <div class="play-heading"><div><p id="playEyebrow" class="eyebrow">PLAY 01 / 决策时刻</p><h2 id="playTitle">弗拉格 · 投还是传</h2></div><div id="matchInfo" class="match-info"><strong>DAL <b>103</b><em>—</em> HOU <b>107</b></strong><span>Q4 · <time id="frameClock">1:36</time></span></div></div>
+          <div id="mediaFrame" class="media-frame">
+            <img id="keyframe" src="assets/flagg-decision.svg" alt="合成球场示意：持球人面对补防，另一侧队友位于传球位置" draggable="false">
+            <div id="answerMask" class="answer-mask"><span class="mask-heading" aria-hidden="true"><span class="mask-line"></span>READ THE PLAY</span><span class="mask-copy">先看局面，再看估算。</span></div>
+            <svg id="evidenceOverlay" class="evidence-overlay" viewBox="0 0 1280 720" aria-hidden="true">
+              <g data-mark="carrier"><rect x="747" y="236" width="100" height="165" rx="14"/><path d="M797 402v24"/><circle cx="797" cy="435" r="9"/></g>
+              <g data-mark="teammate"><rect x="617" y="167" width="66" height="111" rx="12"/><path d="M650 280v27"/><circle cx="650" cy="314" r="9"/></g>
+              <g data-mark="defender"><rect x="568" y="292" width="100" height="151" rx="14"/><path d="M619 445v23"/><circle cx="619" cy="474" r="9"/></g>
+              <path id="passRoute" class="pass-route" d="M795 430Q714 420 650 316"/>
+            </svg>
+            <div id="evidenceCaption" class="evidence-caption" hidden></div>
+            <div id="frameUnavailable" class="frame-unavailable" hidden><svg class="icon"><use href="#i-replay"/></svg><h3>这张关键帧暂时无法加载</h3><button id="retryFrame" class="line-button">重新加载</button></div>
+          </div>
+          <div class="frame-meta"><span><i></i>交互示意图<span class="meta-divider"></span><span id="frameSource">球场位置示意</span></span><button id="frameHelp" class="text-button small" aria-controls="frameNote" aria-expanded="false">画面说明<svg class="icon"><use href="#i-help"/></svg></button></div>
+          <div id="frameNote" class="inline-note" hidden>公开原型使用合成球场呈现交互流程，数值沿用团队路演样例。球员位置、框线与路线均为示意。</div>
+          <nav id="timeline" class="timeline" aria-label="关键帧回看">
+            <span class="timeline-label">回看局面</span><div class="timeline-track"><span id="timelineProgress"></span></div>
+            <button data-frame="0"><span class="timeline-dot"></span><time>1:42</time><span>回合开始</span></button>
+            <button data-frame="1"><span class="timeline-dot"></span><time>1:39</time><span>面对防守</span></button>
+            <button data-frame="2" aria-current="step"><span class="timeline-dot"></span><time>1:36</time><span>决策时刻</span></button>
+          </nav>
+        </section>
+
+        <aside id="insightPanel" class="insight-panel" aria-label="选择与分析" tabindex="-1">
+          <div id="contextPanel" hidden><p class="eyebrow">READ THE PLAY</p><h2 id="contextTitle"></h2><p id="contextCopy" class="panel-lead"></p><div id="contextDetails" class="context-details"></div></div>
+          <div id="choicePanel">
+            <p class="eyebrow">YOUR CALL / 你来判断</p><h2>如果你是他，<br>这一球怎么选？</h2>
+            <p class="panel-lead">补防到来，进攻出现两条路。<br>做出你的判断，揭晓选择背后的依据。</p>
+            <div class="choices" role="group" aria-label="选择一种进攻方式">
+              <button class="choice" data-choice="shoot" aria-pressed="false"><span class="choice-number">01</span><span><strong>自己突破出手</strong><small>继续攻击篮筐</small></span><span class="choice-indicator"></span></button>
+              <button class="choice" data-choice="pass" aria-pressed="false"><span class="choice-number">02</span><span><strong>传给空位的马绍尔</strong><small>把球交给另一侧的队友</small></span><span class="choice-indicator"></span></button>
+            </div>
+            <button id="revealButton" class="primary-button panel-action" disabled>揭晓决策分析<svg class="icon"><use href="#i-arrow"/></svg></button>
+            <button id="skipChoice" class="quiet-button skip-choice">直接查看分析</button>
+            <p class="choice-note">读懂选择，从看清局面开始。</p>
+          </div>
+          <div id="resultPanel" hidden>
+            <div class="result-heading"><p class="eyebrow">DECISION INSIGHT</p><button id="chooseAgain" class="text-button small">重新选择<svg class="icon"><use href="#i-replay"/></svg></button></div>
+            <h2>两条路，<br>放在同一把尺上。</h2><p id="yourChoice" class="your-choice"></p>
+            <div id="estimateGrid" class="estimate-grid"></div>
+            <p class="estimate-unit">预期得分 / 每 100 次选择 · 规则估算</p>
+            <div class="uncertainty"><span class="delta">+7</span><div><strong>差距在误差内</strong><p>传球估算高 7，差距处于误差范围，两条路仍需结合局面判断。</p></div></div>
+            <div class="evidence-list"><p class="eyebrow">把解释放回球场</p>
+              <button data-evidence="defender"><span>01</span><div><strong>补防改变了局面</strong><small>查看从马绍尔身边过来的补防球员</small></div><svg class="icon"><use href="#i-target"/></svg></button>
+              <button data-evidence="teammate"><span>02</span><div><strong>另一侧出现传球选项</strong><small>查看马绍尔的位置与传球路线示意</small></div><svg class="icon"><use href="#i-target"/></svg></button>
+            </div>
+            <details id="sourceDetails" class="source-details"><summary>来源与估算边界<svg class="icon"><use href="#i-arrow"/></svg></summary><div id="sourceCopy"></div></details>
+          </div>
+          <div id="tourNotice" class="tour-notice" hidden>自动导览即将揭晓；选择任一选项可接管。</div>
+        </aside>
+      </div>
+      <footer class="chapter-nav">
+        <div class="nav-left"><button id="navigationHelp" class="icon-button" aria-label="显示操作说明" aria-expanded="false" aria-controls="navigationHint" data-tooltip="操作说明"><svg class="icon"><use href="#i-help"/></svg></button><span class="nav-rule"></span><span id="chapterNumber" class="chapter-number">02 <small>/ 05</small></span></div>
+        <nav id="chapterTabs" class="chapter-tabs" aria-label="分析亮点"></nav>
+        <div class="nav-right"><button id="tourButton" class="text-button" aria-pressed="false"><svg class="icon"><use href="#i-play"/></svg><span>自动导览</span></button><span class="nav-rule"></span><button id="prevButton" class="icon-button" aria-label="上一个亮点"><svg class="icon"><use href="#i-back"/></svg></button><button id="nextButton" class="icon-button" aria-label="下一个亮点"><svg class="icon"><use href="#i-arrow"/></svg></button></div>
+        <div class="chapter-track"><span id="chapterProgress"></span></div>
+      </footer>
+      <div id="navigationHint" class="navigation-hint" hidden><span>滚轮或左右键切换亮点 · Esc 回到全景</span><button id="dismissHint" class="icon-button" aria-label="关闭操作提示"><svg class="icon"><use href="#i-close"/></svg></button></div>
+    </section>
+
+    <section id="outro" class="outro" aria-labelledby="outroTitle" hidden>
+      <h2 id="outroTitle" class="sr-only">继续了解 CourtCast</h2>
+      <div class="outro-scene">
+        <a id="outroLaunch" class="outro-ball" href="https://github.com/lavine888/CourtCast-Showcase#readme" aria-label="查看 CourtCast 获奖作品与产品介绍"><img src="assets/logo_ball.svg" alt=""><span aria-hidden="true"></span></a>
+        <p class="outro-ball-hint" aria-hidden="true"><i></i>点这颗球，了解获奖作品</p>
+        <a id="outroReadme" class="outro-readme text-button" href="https://github.com/lavine888/CourtCast-Showcase/blob/main/docs/PRODUCT.md" target="_blank" rel="noopener noreferrer">项目说明 / README<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only">，在新标签页打开</span></a>
+      </div>
+      <div class="outro-signature"><img src="assets/logo_word.svg" width="230" height="44" alt="CourtCast"><p>用你的眼睛，看懂每一球。</p></div>
+      <p class="outro-note">向上滚动，回看最后一幕</p>
+    </section>
+  </main>
+
+  <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+  <script src="demo-data.js"></script>
+  <script src="experience.js"></script>
+</body>
+</html>
