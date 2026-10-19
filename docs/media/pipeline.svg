@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="470" viewBox="0 0 1440 470" role="img" aria-labelledby="title desc">
+  <title id="title">CourtCast · 从回放到理解</title>
+  <desc id="desc">比赛视频经过官方记录对齐、确定性规则计算、讲稿配音和视频渲染，生成可以播放、交互与查询依据的讲解片。事实、故事、成片清单与证据贯穿流程。</desc>
+  <rect width="1440" height="470" rx="22" fill="#241610"/>
+  <path d="M48 90H1392M48 374H1392" stroke="#A99563" stroke-opacity=".3"/>
+  <g font-family="Segoe UI,Arial,Noto Sans SC,Microsoft YaHei,sans-serif">
+    <text x="48" y="51" font-size="18" fill="#A99563" letter-spacing="3">COURTCAST / FROM REPLAY TO REASONING</text>
+    <text x="1392" y="51" font-size="16" fill="#FCF5E2" text-anchor="end">画面 · 事实 · 解释 · 体验</text>
+    <path d="M165 164H1275" stroke="#A99563" stroke-opacity=".5" stroke-width="1.5"/>
+    <g fill="#A99563">
+      <path d="m307 160 7 4-7 4zm276 0 7 4-7 4zm276 0 7 4-7 4zm276 0 7 4-7 4z"/>
+    </g>
+    <g fill="#592F23" stroke="#A99563" stroke-width="1.5">
+      <circle cx="165" cy="164" r="30"/><circle cx="442" cy="164" r="30"/><circle cx="719" cy="164" r="30"/><circle cx="996" cy="164" r="30"/><circle cx="1273" cy="164" r="30"/>
+    </g>
+    <g fill="#FCF5E2" font-size="19" text-anchor="middle">
+      <text x="165" y="171">01</text><text x="442" y="171">02</text><text x="719" y="171">03</text><text x="996" y="171">04</text><text x="1273" y="171">05</text>
+    </g>
+    <g fill="#FCF5E2" font-size="26" font-weight="600" text-anchor="middle">
+      <text x="165" y="240">输入一个回合</text><text x="442" y="240">对齐官方记录</text><text x="719" y="240">解释一次决策</text><text x="996" y="240">组织讲稿配音</text><text x="1273" y="240">交付讲解体验</text>
+    </g>
+    <g fill="#D6C7B3" font-size="17" text-anchor="middle">
+      <text x="165" y="279">视频 / 比分条线索</text><text x="442" y="279">球队 / 时钟 / 比分 / 事件</text><text x="719" y="279">机会 / 选择 / 结果</text><text x="996" y="279">叙事 / 声音 / 字幕</text><text x="1273" y="279">成片 / 章节 / 交互 / 追问</text>
+    </g>
+    <g fill="#A99563" font-size="14" letter-spacing="1.4" text-anchor="middle">
+      <text x="165" y="325">VIDEO INPUT</text><text x="442" y="325">OFFICIAL ALIGNMENT</text><text x="719" y="325">RULE ENGINE</text><text x="996" y="325">NARRATIVE &amp; VOICE</text><text x="1273" y="325">FILM &amp; EXPLORATION</text>
+    </g>
+    <text x="48" y="426" font-size="17" fill="#FCF5E2">facts → story → manifest</text>
+    <text x="1392" y="426" font-size="17" fill="#D6C7B3" text-anchor="end">同一份依据，贯穿分析、播放与追问</text>
+  </g>
+</svg>
